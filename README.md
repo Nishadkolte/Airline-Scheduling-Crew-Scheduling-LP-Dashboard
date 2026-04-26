@@ -122,4 +122,3 @@ All data lives in `src/data.js`. To adapt for your airline:
 ## 📄 License
 
 MIT — free to use, adapt, and deploy for any airline.
-# Airline-Scheduling-Crew-Scheduling-LP-Dashboard
