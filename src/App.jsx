@@ -24,8 +24,8 @@ const TABS = [
 ]
 
 const SectionLabel = ({ num, children }) => (
-  <div style={{ display:'flex', alignItems:'center', gap:8, padding:'12px 0 8px', fontFamily:"'Space Grotesk',sans-serif", fontSize:12, fontWeight:700, color:'#0C4A8A', textTransform:'uppercase', letterSpacing:'0.06em' }}>
-    <div style={{ width:22, height:22, background:'#0C4A8A', color:'#fff', borderRadius:5, display:'flex', alignItems:'center', justifyContent:'center', fontSize:11, fontWeight:700, flexShrink:0 }}>{num}</div>
+  <div style={{ display:'flex', alignItems:'center', gap:10, padding:'16px 0 10px', fontFamily:"'Space Grotesk',sans-serif", fontSize:14, fontWeight:700, color:'#0C4A8A', textTransform:'uppercase', letterSpacing:'0.06em' }}>
+    <div style={{ width:26, height:26, background:'#0C4A8A', color:'#fff', borderRadius:6, display:'flex', alignItems:'center', justifyContent:'center', fontSize:13, fontWeight:700, flexShrink:0 }}>{num}</div>
     {children}
   </div>
 )
@@ -42,7 +42,7 @@ export default function App() {
   const violations = useMemo(() => checkViolations(data, assumptions), [data, assumptions])
 
   const tabStyle = active => ({
-    padding: '7px 16px', borderRadius: 7, fontSize: 13, fontWeight: 600,
+    padding: '9px 20px', borderRadius: 8, fontSize: 15, fontWeight: 600,
     cursor: 'pointer', border: 'none', whiteSpace: 'nowrap', transition: 'all .15s',
     background: active ? '#0C4A8A' : 'transparent',
     color: active ? '#fff' : '#64748B',
@@ -55,8 +55,8 @@ export default function App() {
 
       <div className="page-wrap">
 
-        {/* TWO-COLUMN LAYOUT: Assumptions (left) + Impact/Banner/KPIs (right) */}
-        <div className="two-col-layout" style={{ display:'grid', gridTemplateColumns:'420px 1fr', gap:16, marginBottom:16 }}>
+        {/* TWO-COLUMN LAYOUT: Assumptions (left) + Results (right) */}
+        <div className="two-col-layout" style={{ display:'grid', gridTemplateColumns:'500px 1fr', gap:20, marginBottom:20 }}>
           
           {/* LEFT: Assumptions */}
           <div>
@@ -75,7 +75,7 @@ export default function App() {
 
         {/* FULL WIDTH: Detailed Analysis */}
         <SectionLabel num="3">Detailed Analysis</SectionLabel>
-        <div style={{ display:'flex', gap:4, marginBottom:10, overflowX:'auto', scrollbarWidth:'none' }}>
+        <div style={{ display:'flex', gap:6, marginBottom:14, overflowX:'auto', scrollbarWidth:'none' }}>
           {TABS.map(t => (
             <button key={t.id} onClick={() => setActiveTab(t.id)} style={tabStyle(activeTab === t.id)}>{t.label}</button>
           ))}
@@ -87,7 +87,7 @@ export default function App() {
         {activeTab === 'season'      && <SeasonTab      assumptions={assumptions}/>}
         {activeTab === 'forecast'    && <ForecastTab/>}
 
-        <div style={{ borderTop:'1px solid #DBEAFE', padding:'10px 0', display:'flex', justifyContent:'space-between', fontSize:12, color:'#94A3B8', background:'transparent', flexWrap:'wrap', gap:4, marginTop:8 }}>
+        <div style={{ borderTop:'1px solid #DBEAFE', padding:'12px 0', display:'flex', justifyContent:'space-between', fontSize:14, color:'#94A3B8', background:'transparent', flexWrap:'wrap', gap:6, marginTop:12 }}>
           <span>Airline Crew Scheduling LP Dashboard · FY 2024</span>
           <span>
             Status: <strong style={{ color:totals.k===0?'#22C55E':'#EF4444' }}>{totals.k===0?'Feasible · Zero Cancellations':'⚠ Cancellations'}</strong>

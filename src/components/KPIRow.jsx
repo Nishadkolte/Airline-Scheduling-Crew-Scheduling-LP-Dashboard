@@ -11,13 +11,13 @@ export default function KPIRow({ data, totals }) {
     { icon:'📈', val:fmtK(peak.tot),                                   lbl:`Peak: ${peak.m}`,      sub:'Highest month cost',   col:'#991B1B' },
   ]
   return (
-    <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:10 }}>
+    <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:12 }}>
       {items.map(k => (
-        <div key={k.lbl} style={{ background:'#fff', border:'1px solid #DBEAFE', borderRadius:10, padding:'14px 16px' }}>
-          <div style={{ fontSize:20, marginBottom:6 }}>{k.icon}</div>
-          <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:22, fontWeight:700, color:k.col, lineHeight:1 }}>{k.val}</div>
-          <div style={{ fontSize:13, fontWeight:600, color:'#475569', marginTop:4 }}>{k.lbl}</div>
-          <div style={{ fontSize:11, color:'#94A3B8', marginTop:2 }}>{k.sub}</div>
+        <div key={k.lbl} style={{ background:'#fff', border:'1px solid #DBEAFE', borderRadius:11, padding:'18px 20px' }}>
+          <div style={{ fontSize:26, marginBottom:8 }}>{k.icon}</div>
+          <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:28, fontWeight:700, color:k.col, lineHeight:1 }}>{k.val}</div>
+          <div style={{ fontSize:15, fontWeight:600, color:'#475569', marginTop:6 }}>{k.lbl}</div>
+          <div style={{ fontSize:13, color:'#94A3B8', marginTop:3 }}>{k.sub}</div>
         </div>
       ))}
     </div>
