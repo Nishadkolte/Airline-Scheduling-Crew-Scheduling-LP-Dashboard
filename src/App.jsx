@@ -23,14 +23,8 @@ const TABS = [
   { id: 'forecast',    label: 'Delay Forecast'     },
 ]
 
-// Shared card style
-export const card = {
-  background: '#fff', border: '1px solid #DBEAFE',
-  borderRadius: 10, padding: '16px 18px', marginBottom: 12,
-}
-
 const SectionLabel = ({ num, children }) => (
-  <div style={{ display:'flex', alignItems:'center', gap:8, padding:'14px 0 8px', fontFamily:"'Space Grotesk',sans-serif", fontSize:12, fontWeight:700, color:'#0C4A8A', textTransform:'uppercase', letterSpacing:'0.06em' }}>
+  <div style={{ display:'flex', alignItems:'center', gap:8, padding:'12px 0 8px', fontFamily:"'Space Grotesk',sans-serif", fontSize:12, fontWeight:700, color:'#0C4A8A', textTransform:'uppercase', letterSpacing:'0.06em' }}>
     <div style={{ width:22, height:22, background:'#0C4A8A', color:'#fff', borderRadius:5, display:'flex', alignItems:'center', justifyContent:'center', fontSize:11, fontWeight:700, flexShrink:0 }}>{num}</div>
     {children}
   </div>
@@ -57,23 +51,29 @@ export default function App() {
   return (
     <div style={{ fontFamily:"'DM Sans','Segoe UI',sans-serif", background:'#F0F7FF', minHeight:'100vh', color:'#1e293b' }}>
 
-      {/* Header — full width with inner centering */}
       <Header/>
 
-      {/* All content centred at max-width 960px */}
       <div className="page-wrap">
 
-        {/* ① ASSUMPTIONS */}
-        <SectionLabel num="1">Assumptions — Edit inputs to recalculate everything below</SectionLabel>
-        <AssumptionInputs assumptions={assumptions} onChange={handleChange} onReset={handleReset}/>
-        <ImpactRow totals={totals} baseTotals={DEFAULT_TOTALS}/>
-        <Banner violations={violations}/>
+        {/* TWO-COLUMN LAYOUT: Assumptions (left) + Impact/Banner/KPIs (right) */}
+        <div className="two-col-layout" style={{ display:'grid', gridTemplateColumns:'420px 1fr', gap:16, marginBottom:16 }}>
+          
+          {/* LEFT: Assumptions */}
+          <div>
+            <SectionLabel num="1">Assumptions</SectionLabel>
+            <AssumptionInputs assumptions={assumptions} onChange={handleChange} onReset={handleReset}/>
+          </div>
 
-        {/* ② KPIs */}
-        <SectionLabel num="2">Key Performance Indicators</SectionLabel>
-        <KPIRow data={data} totals={totals}/>
+          {/* RIGHT: Impact + Banner + KPIs */}
+          <div>
+            <SectionLabel num="2">Live Results</SectionLabel>
+            <ImpactRow totals={totals} baseTotals={DEFAULT_TOTALS}/>
+            <Banner violations={violations}/>
+            <KPIRow data={data} totals={totals}/>
+          </div>
+        </div>
 
-        {/* ③ DETAILED ANALYSIS */}
+        {/* FULL WIDTH: Detailed Analysis */}
         <SectionLabel num="3">Detailed Analysis</SectionLabel>
         <div style={{ display:'flex', gap:4, marginBottom:10, overflowX:'auto', scrollbarWidth:'none' }}>
           {TABS.map(t => (
@@ -87,8 +87,7 @@ export default function App() {
         {activeTab === 'season'      && <SeasonTab      assumptions={assumptions}/>}
         {activeTab === 'forecast'    && <ForecastTab/>}
 
-        {/* Footer */}
-        <div style={{ borderTop:'1px solid #DBEAFE', padding:'10px 0', display:'flex', justifyContent:'space-between', fontSize:12, color:'#94A3B8', background:'transparent', flexWrap:'wrap', gap:4, marginTop:4 }}>
+        <div style={{ borderTop:'1px solid #DBEAFE', padding:'10px 0', display:'flex', justifyContent:'space-between', fontSize:12, color:'#94A3B8', background:'transparent', flexWrap:'wrap', gap:4, marginTop:8 }}>
           <span>Airline Crew Scheduling LP Dashboard · FY 2024</span>
           <span>
             Status: <strong style={{ color:totals.k===0?'#22C55E':'#EF4444' }}>{totals.k===0?'Feasible · Zero Cancellations':'⚠ Cancellations'}</strong>
@@ -96,7 +95,7 @@ export default function App() {
           </span>
         </div>
 
-      </div>{/* /page-wrap */}
+      </div>
     </div>
   )
 }

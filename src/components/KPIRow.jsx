@@ -11,13 +11,13 @@ export default function KPIRow({ data, totals }) {
     { icon:'📈', val:fmtK(peak.tot),                                   lbl:`Peak: ${peak.m}`,      sub:'Highest month cost',   col:'#991B1B' },
   ]
   return (
-    <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:10 }}>
+    <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:10 }}>
       {items.map(k => (
         <div key={k.lbl} style={{ background:'#fff', border:'1px solid #DBEAFE', borderRadius:10, padding:'14px 16px' }}>
           <div style={{ fontSize:20, marginBottom:6 }}>{k.icon}</div>
-          <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:24, fontWeight:700, color:k.col, lineHeight:1 }}>{k.val}</div>
+          <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:22, fontWeight:700, color:k.col, lineHeight:1 }}>{k.val}</div>
           <div style={{ fontSize:13, fontWeight:600, color:'#475569', marginTop:4 }}>{k.lbl}</div>
-          <div style={{ fontSize:12, color:'#94A3B8', marginTop:2 }}>{k.sub}</div>
+          <div style={{ fontSize:11, color:'#94A3B8', marginTop:2 }}>{k.sub}</div>
         </div>
       ))}
     </div>

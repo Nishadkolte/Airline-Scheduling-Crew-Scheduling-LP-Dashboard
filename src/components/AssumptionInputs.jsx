@@ -24,20 +24,22 @@ function SliderField({ f, val, onChange }) {
 }
 
 export default function AssumptionInputs({ assumptions, onChange, onReset }) {
-  const box = { background:'#fff', border:'1px solid #DBEAFE', borderRadius:10, padding:'14px 16px' }
+  const box = { background:'#fff', border:'1px solid #DBEAFE', borderRadius:10, padding:'14px 16px', marginBottom:12 }
   return (
     <>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:12 }}>
-        <div style={box}>
-          <div style={{ fontSize:13, fontWeight:700, color:'#0C4A8A', marginBottom:12 }}>Section A — Labor Costs</div>
-          {FIELDS_A.map(f => <SliderField key={f.k} f={f} val={assumptions[f.k]} onChange={onChange}/>)}
-        </div>
-        <div style={box}>
-          <div style={{ fontSize:13, fontWeight:700, color:'#0C4A8A', marginBottom:12 }}>Section B — Capacity Limits</div>
-          {FIELDS_B.map(f => <SliderField key={f.k} f={f} val={assumptions[f.k]} onChange={onChange}/>)}
-        </div>
+      {/* Section A */}
+      <div style={box}>
+        <div style={{ fontSize:13, fontWeight:700, color:'#0C4A8A', marginBottom:12 }}>Section A — Labor Costs</div>
+        {FIELDS_A.map(f => <SliderField key={f.k} f={f} val={assumptions[f.k]} onChange={onChange}/>)}
       </div>
-      <button onClick={onReset} style={{ display:'inline-flex', alignItems:'center', gap:5, background:'#EFF6FF', border:'1px solid #BFDBFE', borderRadius:7, padding:'6px 14px', fontSize:12, fontWeight:600, color:'#1D6FBF', cursor:'pointer', marginTop:10, transition:'all .15s' }}>
+      
+      {/* Section B */}
+      <div style={box}>
+        <div style={{ fontSize:13, fontWeight:700, color:'#0C4A8A', marginBottom:12 }}>Section B — Capacity Limits</div>
+        {FIELDS_B.map(f => <SliderField key={f.k} f={f} val={assumptions[f.k]} onChange={onChange}/>)}
+      </div>
+
+      <button onClick={onReset} style={{ display:'inline-flex', alignItems:'center', gap:5, background:'#EFF6FF', border:'1px solid #BFDBFE', borderRadius:7, padding:'6px 14px', fontSize:12, fontWeight:600, color:'#1D6FBF', cursor:'pointer', transition:'all .15s' }}>
         ↺ Reset to defaults
       </button>
     </>
